@@ -1,6 +1,9 @@
 package code;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class FileSearchApp {
 	String path;
@@ -20,7 +23,7 @@ public class FileSearchApp {
 		case 1: app.setPath(args[0]);
 		}
 		try {
-			app.walkDirectory(app.getPath());
+			app.walkDirectoryJava8(app.getPath());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -69,5 +72,16 @@ public class FileSearchApp {
 	public void setZipFileName(String zipFileName) {
 		this.zipFileName = zipFileName;
 	}
+	
+	public void walkDirectoryJava8(String path) throws IOException {
+		Files.walk(Paths.get(path))
+			.forEach(f -> processFile(f.toFile()));
+	}
+	
+	public void processFile(File file) {
+		System.out.println("processFile: " + file);
+	}
 
 }
+
+
