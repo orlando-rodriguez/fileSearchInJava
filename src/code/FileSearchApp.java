@@ -1,5 +1,7 @@
 package code;
 
+import java.io.File;
+
 public class FileSearchApp {
 	String path;
 	String regex;
@@ -23,7 +25,21 @@ public class FileSearchApp {
 			e.printStackTrace();
 		}
 	}
-
+	
+	public void walkDirectory(String path) {
+		System.out.println("walkDirectory: " + path);
+		searchFile(null);
+		addFileToZip(null);
+		
+	}
+	
+	public void searchFile(File file) {
+		System.out.println("searchFile: " + file);
+	}
+	
+	public void addFileToZip(File file) {
+		System.out.println("addFileToZip: " + file);
+	}
 
 	public String getPath() {
 		return path;
